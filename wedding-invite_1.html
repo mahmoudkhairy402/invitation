@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michael & Natalia · 30.11.2026</title>
+    <title>Ahmed & Nada · 30.11.2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -284,13 +284,15 @@
         inset: 0;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
         pointer-events: none;
+        opacity: 0;
+        animation: none;
       }
 
       .stem-line {
         width: 1.5px;
         background: var(--dark);
         height: 0;
-        animation: growStem 1.2s ease-out 0.3s forwards;
+        animation: none;
         transform-origin: top center;
       }
       @keyframes growStem {
@@ -301,7 +303,7 @@
 
       .lavender-svg {
         opacity: 0;
-        animation: fadeIn 0.8s ease 1.5s forwards;
+        animation: none;
         margin-bottom: 4px;
       }
       @keyframes fadeIn {
@@ -316,7 +318,7 @@
         font-size: clamp(18px, 4vw, 24px);
         color: var(--dark);
         opacity: 0;
-        animation: fadeIn 0.8s ease 2.3s forwards;
+        animation: none;
         margin-top: 8px;
         margin-bottom: 16px;
         letter-spacing: 0.02em;
@@ -326,12 +328,12 @@
         width: 1.5px;
         background: var(--dark);
         height: 0;
-        animation: growStemDown 1s ease-out 3.1s forwards;
+        animation: none;
         transform-origin: top center;
       }
       .lower-leaf-svg {
         opacity: 0;
-        animation: fadeIn 0.8s ease 3.8s forwards;
+        animation: none;
       }
       @keyframes growStemDown {
         to {
@@ -505,19 +507,22 @@
       }
 
       #intro.is-active .stem-line {
-        animation-delay: 0.3s;
+        animation: growStem 1.2s ease-out 3.4s forwards;
+      }
+      #intro.is-active .intro-texture {
+        animation: fadeIn 0.8s ease 3s forwards;
       }
       #intro.is-active .lavender-svg {
-        animation: fadeIn 0.8s ease 1.5s forwards;
+        animation: fadeIn 0.8s ease 3.8s forwards;
       }
       #intro.is-active .you-are-invited {
-        animation: fadeIn 0.8s ease 2.3s forwards;
+        animation: fadeIn 0.8s ease 4.2s forwards;
       }
       #intro.is-active .lower-stem {
-        animation: growStemDown 1s ease-out 3.1s forwards;
+        animation: growStemDown 1s ease-out 4.6s forwards;
       }
       #intro.is-active .lower-leaf-svg {
-        animation: fadeIn 0.8s ease 3.8s forwards;
+        animation: fadeIn 0.8s ease 5s forwards;
       }
 
       /* ─── SECTION 3: SAVE THE DATE ─── */
@@ -752,6 +757,145 @@
         line-height: 1.5;
       }
 
+      /* ─── SECTION 6: RSVP / WHATSAPP ─── */
+      #rsvp {
+        background: var(--dark);
+        padding: 90px 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #rsvp::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          rgba(201, 169, 110, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .rsvp-heading {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(32px, 8vw, 52px);
+        color: #fff;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.2;
+      }
+
+      .rsvp-sub {
+        font-family: "Didact Gothic", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.7;
+      }
+
+      .rsvp-form {
+        max-width: 640px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 14px;
+      }
+
+      .rsvp-textarea {
+        width: 100%;
+        min-height: 140px;
+        resize: vertical;
+        border-radius: 22px;
+        border: 1px solid rgba(232, 213, 176, 0.22);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        padding: 18px 20px;
+        font-family: "Didact Gothic", sans-serif;
+        font-size: 16px;
+        line-height: 1.8;
+        outline: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .rsvp-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .rsvp-textarea:focus {
+        border-color: rgba(232, 213, 176, 0.5);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .rsvp-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .rsvp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 48px;
+        background: var(--gold);
+        color: var(--dark);
+        border: none;
+        border-radius: 60px;
+        font-family: "Didact Gothic", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+        position: relative;
+        z-index: 1;
+        letter-spacing: 0.05em;
+      }
+      .rsvp-btn:hover {
+        opacity: 0.88;
+        transform: translateY(-2px);
+      }
+
+      .rsvp-send-btn {
+        background: rgba(255, 255, 255, 0.15);
+
+        color: rgba(247, 244, 244, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .rsvp-clear-btn {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .rsvp-clear-btn:hover {
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      .rsvp-note {
+        font-family: "Didact Gothic", sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
       /* ─── SECTION 6: FOOTER ─── */
       #footer {
         background: #f5f2ee;
@@ -846,9 +990,9 @@
 
       <div class="video-hero-content">
         <div class="video-hero-eyebrow">Wedding Invitation</div>
-        <div class="video-hero-name-1">Michael</div>
+        <div class="video-hero-name-1">Ahmed</div>
         <div class="video-hero-amp">&amp;</div>
-        <div class="video-hero-name-2">Natalia</div>
+        <div class="video-hero-name-2">Nada</div>
         <div class="video-hero-line"></div>
         <div class="video-hero-date">30 . 11 . 2026</div>
 
@@ -1044,9 +1188,7 @@
     <section id="hero">
       <div class="mn-monogram">M &amp; N &nbsp;·&nbsp; 2026</div>
       <p class="hero-subtitle">we're getting married</p>
-      <h1 class="hero-names">
-        Michael <span class="amp">&amp;</span><br />Natalia
-      </h1>
+      <h1 class="hero-names">Ahmed <span class="amp">&amp;</span><br />Nada</h1>
       <div class="hero-date-line">
         <hr />
         <span class="hero-date-text"
@@ -1058,10 +1200,18 @@
 
       <div class="photos-grid">
         <div class="photo-frame left">
-          <div class="photo-placeholder">📸</div>
+          <img
+            src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80"
+            alt="Temporary couple photo"
+            loading="lazy"
+          />
         </div>
         <div class="photo-frame right">
-          <div class="photo-placeholder">💍</div>
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80"
+            alt="Temporary couple photo"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -1352,7 +1502,7 @@
       </svg>
 
       <hr class="std-divider reveal" />
-      <p class="std-names reveal">Michael + Natalia</p>
+      <p class="std-names reveal">Ahmed + Nada</p>
       <p class="std-date reveal">3 0 &nbsp;. &nbsp;1 1 &nbsp;. &nbsp;2 0 2 6</p>
     </section>
 
@@ -1527,6 +1677,44 @@
       </div>
     </section>
 
+    <!-- ─── SECTION 6: RSVP / WHATSAPP ─── -->
+    <section id="rsvp">
+      <p class="rsvp-sub reveal">
+        The day feels better with you there.<br />
+        Leave us a note and we’ll open it in WhatsApp.
+      </p>
+
+      <div class="rsvp-form reveal">
+        <textarea
+          id="rsvp-message"
+          class="rsvp-textarea"
+          placeholder="mabroook! so happy for you both 🌸"
+          aria-label="RSVP message"
+        ></textarea>
+
+        <div class="rsvp-actions">
+          <button
+            id="rsvp-send-btn"
+            class="rsvp-btn rsvp-send-btn"
+            type="button"
+          >
+            Send on WhatsApp
+          </button>
+          <button
+            id="rsvp-clear-btn"
+            class="rsvp-btn rsvp-clear-btn"
+            type="button"
+          >
+            Clear message
+          </button>
+        </div>
+      </div>
+
+      <div class="rsvp-note reveal">
+        Your message opens directly in WhatsApp.
+      </div>
+    </section>
+
     <!-- ─── FOOTER ─── -->
     <footer id="footer">
       <p class="footer-sign reveal">Stay as late as your heart wants 🌸</p>
@@ -1556,7 +1744,13 @@
       const videoScrollHint = document.getElementById("video-scroll-hint");
       const videoHeroAudio = new Audio("totatota.mp3");
       videoHeroAudio.preload = "auto";
+      const rsvpMessage = document.getElementById("rsvp-message");
+      const rsvpSendBtn = document.getElementById("rsvp-send-btn");
+      const rsvpClearBtn = document.getElementById("rsvp-clear-btn");
 
+      const youAreInvited = document.querySelector(".you-are-invited");
+      const lavenderSvg = document.querySelector(".lavender-svg");
+      const lowerLeafSvg = document.querySelector(".lower-leaf-svg");
       let videoHeroStarted = false;
 
       const observer = new IntersectionObserver(
@@ -1606,10 +1800,19 @@
 
         try {
           await Promise.all([videoHeroVideo.play(), videoHeroAudio.play()]);
+
+          document.getElementById("intro").classList.add("is-active");
+
           setTimeout(() => {
             videoHeroSection.classList.add("names-visible");
             videoScrollHint.classList.add("visible");
           }, 2000);
+
+          // after 4 seconds from video start, scroll to the main hero section
+          setTimeout(() => {
+            sections[1].scrollIntoView({ behavior: "smooth" });
+          }, 4000);
+
           setTimeout(() => {
             videoHeroPlayBtn.classList.add("is-hidden");
           }, 250);
@@ -1620,9 +1823,27 @@
         }
       });
 
-      // Auto-advance from intro after animation completes
+      rsvpSendBtn.addEventListener("click", () => {
+        const typedMessage = rsvpMessage.value.trim();
+        const message =
+          typedMessage ||
+          "Wishing you both a beautiful and blessed wedding day.";
+        const waUrl = `https://wa.me/201208381108?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, "_blank", "noopener,noreferrer");
+      });
+
+      rsvpClearBtn.addEventListener("click", () => {
+        rsvpMessage.value = "";
+        rsvpMessage.focus();
+      });
+
+      // Auto-advance from intro after animation completes (only if video wasn't started)
       setTimeout(() => {
-        document.getElementById("intro").scrollIntoView({ behavior: "smooth" });
+        if (!videoHeroStarted) {
+          document
+            .getElementById("intro")
+            .scrollIntoView({ behavior: "smooth" });
+        }
       }, 5500);
     </script>
   </body>
