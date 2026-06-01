@@ -1,0 +1,1577 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دعوة فرح — نور & كريم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Tajawal:wght@200;300;400;500;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #f9f5f0;
+        --ivory: #ede8df;
+        --gold: #c9a96e;
+        --goldlt: #e8d5b0;
+        --dark: #1c1814;
+        --mid: #6b5e50;
+        --light: #b0a090;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--cream);
+        color: var(--dark);
+        font-family: "Tajawal", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* ══════════════════════════════════════
+         HERO — full-screen video + names
+      ══════════════════════════════════════ */
+      #hero {
+        position: relative;
+        height: 100vh;
+        min-height: 600px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .hero-player {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .hero-play-btn {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 28px;
+        border: 1px solid rgba(232, 213, 176, 0.55);
+        border-radius: 999px;
+        background: rgba(18, 15, 12, 0.38);
+        color: #fff;
+        font-family: "Tajawal", sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .hero-play-btn i,
+      .hero-scroll i,
+      .scroll-to-top i {
+        pointer-events: none;
+      }
+
+      .hero-play-btn i {
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .hero-play-btn:hover {
+        transform: translateY(-2px);
+        background: rgba(201, 169, 110, 0.2);
+        border-color: var(--goldlt);
+      }
+
+      .hero-play-btn:disabled {
+        opacity: 0.65;
+        cursor: wait;
+        transform: none;
+      }
+
+      .hero-play-btn.is-hidden {
+        opacity: 0;
+        transform: scale(0.92);
+        pointer-events: none;
+      }
+
+      /* dark vignette over video */
+      #hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.25) 0%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+
+      /* small top label */
+      .hero-eyebrow {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 300;
+        font-size: 13px;
+        letter-spacing: 0.25em;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        opacity: 0;
+        margin-bottom: 18px;
+      }
+
+      /* big name line 1 */
+      .hero-name-1 {
+        font-family: "Amiri", serif;
+        font-weight: 700;
+        font-size: clamp(58px, 16vw, 110px);
+        color: #fff;
+        line-height: 1;
+        opacity: 0;
+        letter-spacing: -0.01em;
+      }
+
+      /* ampersand */
+      .hero-amp {
+        font-family: "Amiri", serif;
+        font-style: italic;
+        font-size: clamp(28px, 7vw, 50px);
+        color: var(--goldlt);
+        opacity: 0;
+        margin: 4px 0;
+        line-height: 1;
+      }
+
+      /* big name line 2 */
+      .hero-name-2 {
+        font-family: "Amiri", serif;
+        font-weight: 700;
+        font-size: clamp(58px, 16vw, 110px);
+        color: #fff;
+        line-height: 1;
+        opacity: 0;
+        letter-spacing: -0.01em;
+      }
+
+      /* gold divider line */
+      .hero-line {
+        width: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0;
+        margin: 20px 0;
+      }
+
+      /* date */
+      .hero-date {
+        font-family: "Tajawal", sans-serif;
+        font-weight: 300;
+        font-size: clamp(13px, 3vw, 16px);
+        color: rgba(255, 255, 255, 0.75);
+        letter-spacing: 0.3em;
+        opacity: 0;
+      }
+
+      #hero.names-visible .hero-eyebrow {
+        animation: fadeDown 0.9s ease forwards;
+      }
+
+      #hero.names-visible .hero-name-1 {
+        animation: splitReveal1 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      #hero.names-visible .hero-amp {
+        animation: fadeIn 0.7s ease forwards;
+      }
+
+      #hero.names-visible .hero-name-2 {
+        animation: splitReveal2 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      #hero.names-visible .hero-line {
+        animation: expandLine 1s ease forwards;
+      }
+
+      #hero.names-visible .hero-date {
+        animation: fadeIn 0.8s ease forwards;
+      }
+
+      /* scroll cue */
+      .hero-scroll {
+        position: absolute;
+        bottom: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+      }
+
+      .hero-scroll.visible {
+        animation: fadeIn 1s ease forwards;
+      }
+      .hero-scroll span {
+        font-family: "Tajawal", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        color: rgba(255, 255, 255, 0.68);
+        text-align: center;
+      }
+
+      .hero-scroll .scroll-hint {
+        text-transform: none;
+      }
+
+      .hero-scroll i {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 16px;
+        animation: arrowPulse 1.8s ease-in-out infinite;
+      }
+      .scroll-arrow {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+        animation: arrowPulse 1.8s ease-in-out infinite;
+      }
+
+      .hero-scroll .arrow-2 {
+        animation-delay: 0.18s;
+        margin-top: -6px;
+        opacity: 0.72;
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        left: 18px;
+        bottom: 18px;
+        z-index: 20;
+        width: 50px;
+        height: 50px;
+        border: 1px solid rgba(201, 169, 110, 0.45);
+        border-radius: 50%;
+        background: rgba(18, 15, 12, 0.72);
+        color: var(--goldlt);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+        opacity: 0.92;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .scroll-to-top i {
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .scroll-to-top:hover {
+        transform: translateY(-2px);
+        opacity: 1;
+        background: rgba(201, 169, 110, 0.16);
+      }
+      @keyframes arrowPulse {
+        0%,
+        100% {
+          transform: scaleY(1);
+          opacity: 0.6;
+        }
+        50% {
+          transform: scaleY(1.3);
+          opacity: 1;
+        }
+      }
+
+      /* ── Name animations ── */
+      @keyframes splitReveal1 {
+        0% {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes splitReveal2 {
+        0% {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes expandLine {
+        0% {
+          opacity: 0;
+          width: 0;
+        }
+        100% {
+          opacity: 1;
+          width: 220px;
+        }
+      }
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: WELCOME MESSAGE
+      ══════════════════════════════════════ */
+      #welcome {
+        background: var(--cream);
+        padding: 96px 24px;
+        text-align: center;
+        position: relative;
+      }
+
+      .gold-ornament {
+        font-size: 28px;
+        color: var(--gold);
+        letter-spacing: 8px;
+        display: block;
+        margin-bottom: 28px;
+      }
+
+      .welcome-title {
+        font-family: "Amiri", serif;
+        font-size: clamp(28px, 6vw, 42px);
+        color: var(--dark);
+        margin-bottom: 18px;
+        line-height: 1.4;
+      }
+
+      .welcome-card {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 28px 22px 22px;
+        background: rgba(255, 255, 255, 0.34);
+        border: 1px solid rgba(201, 169, 110, 0.16);
+        border-radius: 24px;
+        box-shadow: 0 16px 40px rgba(28, 24, 20, 0.06);
+        backdrop-filter: blur(6px);
+      }
+
+      .welcome-body {
+        font-family: "Tajawal", sans-serif;
+        font-size: clamp(15px, 3vw, 18px);
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 2;
+        max-width: 640px;
+        margin: 0 auto 28px;
+        letter-spacing: 0.01em;
+        text-align: center;
+      }
+
+      .welcome-body strong {
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .gold-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        max-width: 400px;
+        margin: 0 auto 24px;
+      }
+      .gold-divider hr {
+        flex: 1;
+        border: none;
+        border-top: 1px solid var(--goldlt);
+      }
+      .gold-divider-icon {
+        color: var(--gold);
+        font-size: 18px;
+      }
+
+      .welcome-sub {
+        font-family: "Tajawal", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--light);
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: COUPLE PHOTOS
+      ══════════════════════════════════════ */
+      #couple {
+        background: var(--ivory);
+        padding: 80px 24px;
+      }
+
+      .section-label {
+        text-align: center;
+        font-family: "Tajawal", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 14px;
+      }
+
+      .section-title {
+        font-family: "Amiri", serif;
+        font-size: clamp(28px, 6vw, 42px);
+        text-align: center;
+        color: var(--dark);
+        margin-bottom: 48px;
+        line-height: 1.3;
+      }
+
+      .photos-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .photo-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+        background: #d8d0c4;
+      }
+      .photo-card:nth-child(2) {
+        aspect-ratio: 3/4;
+        transform: translateY(-20px);
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+      .photo-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .photo-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(28, 24, 20, 0.5), transparent);
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: DATE & DETAILS
+      ══════════════════════════════════════ */
+      #details {
+        background: var(--dark);
+        padding: 90px 32px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* subtle pattern bg */
+      #details::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(201, 169, 110, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(201, 169, 110, 0.06) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr 1px 1fr;
+        gap: 0;
+        max-width: 760px;
+        margin: 0 auto 50px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .details-divider {
+        background: rgba(201, 169, 110, 0.25);
+        margin: 12px 0;
+      }
+
+      .detail-block {
+        padding: 24px 20px;
+        text-align: center;
+      }
+      .detail-icon {
+        font-size: 22px;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .detail-label {
+        font-family: "Tajawal", sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+      .detail-value {
+        font-family: "Amiri", serif;
+        font-size: clamp(18px, 4vw, 24px);
+        color: #fff;
+        line-height: 1.35;
+      }
+      .detail-sub {
+        font-family: "Tajawal", sans-serif;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 4px;
+      }
+
+      .maps-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 13px 32px;
+        border: 1px solid rgba(201, 169, 110, 0.5);
+        background: transparent;
+        color: var(--goldlt);
+        border-radius: 60px;
+        font-family: "Tajawal", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.25s;
+        position: relative;
+        z-index: 1;
+      }
+      .maps-btn:hover {
+        background: rgba(201, 169, 110, 0.12);
+        border-color: var(--gold);
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: STORY TIMELINE
+      ══════════════════════════════════════ */
+      #story {
+        background: var(--cream);
+        padding: 90px 24px;
+      }
+
+      .timeline {
+        max-width: 620px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        right: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--goldlt) 15%,
+          var(--goldlt) 85%,
+          transparent
+        );
+        transform: translateX(50%);
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 1fr 40px 1fr;
+        gap: 0;
+        align-items: start;
+        margin-bottom: 52px;
+        position: relative;
+      }
+
+      .timeline-item:nth-child(odd) .tl-text {
+        grid-column: 1;
+        text-align: right;
+        padding-right: 28px;
+      }
+      .timeline-item:nth-child(odd) .tl-dot {
+        grid-column: 2;
+      }
+      .timeline-item:nth-child(odd) .tl-img {
+        grid-column: 3;
+        padding-left: 28px;
+      }
+
+      .timeline-item:nth-child(even) .tl-img {
+        grid-column: 1;
+        padding-right: 28px;
+      }
+      .timeline-item:nth-child(even) .tl-dot {
+        grid-column: 2;
+      }
+      .timeline-item:nth-child(even) .tl-text {
+        grid-column: 3;
+        text-align: right;
+        padding-left: 28px;
+      }
+
+      .tl-dot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 12px;
+      }
+      .tl-dot-inner {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--gold);
+        background: var(--cream);
+        position: relative;
+        z-index: 1;
+      }
+
+      .tl-year {
+        font-family: "Tajawal", sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        margin-bottom: 6px;
+      }
+      .tl-event {
+        font-family: "Amiri", serif;
+        font-size: 20px;
+        color: var(--dark);
+        margin-bottom: 6px;
+        line-height: 1.3;
+      }
+      .tl-desc {
+        font-family: "Tajawal", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 1.7;
+      }
+
+      .tl-img img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+      .tl-img .img-placeholder {
+        width: 100%;
+        aspect-ratio: 4/3;
+        border-radius: 12px;
+        background: var(--ivory);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        color: var(--light);
+        border: 1px solid var(--goldlt);
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: GALLERY GRID
+      ══════════════════════════════════════ */
+      #gallery {
+        background: var(--ivory);
+        padding: 80px 24px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .gallery-item {
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.07);
+      }
+      .gallery-item.tall {
+        grid-row: span 2;
+      }
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+
+      .gallery-item {
+        aspect-ratio: 1;
+      }
+      .gallery-item.tall {
+        aspect-ratio: unset;
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: PROGRAM
+      ══════════════════════════════════════ */
+      #program {
+        background: var(--cream);
+        padding: 90px 32px;
+      }
+
+      .program-items {
+        max-width: 560px;
+        margin: 0 auto;
+      }
+
+      .prog-item {
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 20px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--ivory);
+        align-items: start;
+        direction: rtl;
+      }
+      .prog-item:first-child {
+        border-top: 1px solid var(--ivory);
+      }
+
+      .prog-time {
+        font-family: "Amiri", serif;
+        font-style: italic;
+        font-size: 20px;
+        color: var(--gold);
+        text-align: right;
+        padding-top: 2px;
+        line-height: 1;
+      }
+      .prog-name {
+        font-family: "Tajawal", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--dark);
+        margin-bottom: 4px;
+      }
+      .prog-desc {
+        font-family: "Tajawal", sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 1.6;
+      }
+
+      /* ══════════════════════════════════════
+         SECTION: RSVP
+      ══════════════════════════════════════ */
+      #rsvp {
+        background: var(--dark);
+        padding: 90px 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #rsvp::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle at 50% 50%,
+          rgba(201, 169, 110, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .rsvp-heading {
+        font-family: "Amiri", serif;
+        font-size: clamp(32px, 8vw, 52px);
+        color: #fff;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.2;
+      }
+
+      .rsvp-sub {
+        font-family: "Tajawal", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.7;
+      }
+
+      .rsvp-form {
+        max-width: 640px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 14px;
+      }
+
+      .rsvp-textarea {
+        width: 100%;
+        min-height: 140px;
+        resize: vertical;
+        border-radius: 22px;
+        border: 1px solid rgba(232, 213, 176, 0.22);
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        padding: 18px 20px;
+        font-family: "Tajawal", sans-serif;
+        font-size: 16px;
+        line-height: 1.8;
+        outline: none;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        transition:
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .rsvp-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .rsvp-textarea:focus {
+        border-color: rgba(232, 213, 176, 0.5);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .rsvp-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .rsvp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 16px 48px;
+        background: var(--gold);
+        color: var(--dark);
+        border: none;
+        border-radius: 60px;
+        font-family: "Tajawal", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          opacity 0.2s,
+          transform 0.15s;
+        position: relative;
+        z-index: 1;
+        letter-spacing: 0.05em;
+      }
+      .rsvp-btn:hover {
+        opacity: 0.88;
+        transform: translateY(-2px);
+      }
+
+      .rsvp-send-btn {
+        border: none;
+      }
+
+      .rsvp-clear-btn {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .rsvp-clear-btn:hover {
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 0.28);
+      }
+
+      .rsvp-note {
+        font-family: "Tajawal", sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ══════════════════════════════════════
+         FOOTER
+      ══════════════════════════════════════ */
+      footer {
+        background: #141210;
+        padding: 50px 24px;
+        text-align: center;
+      }
+
+      .footer-names {
+        font-family: "Amiri", serif;
+        font-size: 28px;
+        color: var(--goldlt);
+        margin-bottom: 8px;
+      }
+      .footer-date {
+        font-family: "Tajawal", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* ══════════════════════════════════════
+         SCROLL REVEAL
+      ══════════════════════════════════════ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.85s ease,
+          transform 0.85s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.35s;
+      }
+
+      /* ══════════════════════════════════════
+         RESPONSIVE
+      ══════════════════════════════════════ */
+      @media (max-width: 640px) {
+        .photos-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .photos-row .photo-card:nth-child(3) {
+          display: none;
+        }
+        .photo-card:nth-child(2) {
+          transform: none;
+        }
+
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+        .details-divider {
+          display: none;
+        }
+
+        .timeline::before {
+          display: none;
+        }
+        .timeline-item {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .timeline-item:nth-child(odd) .tl-text,
+        .timeline-item:nth-child(even) .tl-text {
+          grid-column: 1;
+          text-align: right;
+          padding: 0;
+        }
+        .timeline-item:nth-child(odd) .tl-dot,
+        .timeline-item:nth-child(even) .tl-dot {
+          display: none;
+        }
+        .timeline-item:nth-child(odd) .tl-img,
+        .timeline-item:nth-child(even) .tl-img {
+          grid-column: 1;
+          padding: 0;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .gallery-item.tall {
+          grid-row: span 1;
+        }
+        .gallery-item.wide {
+          grid-column: span 1;
+        }
+
+        .prog-item {
+          grid-template-columns: 70px 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ════════════════════════════════════
+  HERO — VIDEO + ANIMATED NAMES
+════════════════════════════════════ -->
+    <section id="hero">
+      <video id="hero-video" preload="metadata" playsinline>
+        <source src="wedding-hero.mp4" type="video/mp4" />
+      </video>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">دعوة زفاف</div>
+        <div class="hero-name-1">نور</div>
+        <div class="hero-amp">&amp;</div>
+        <div class="hero-name-2">كريم</div>
+        <div class="hero-line"></div>
+        <div class="hero-date">١٥ . ٠٨ . ٢٠٢٦</div>
+
+        <div class="hero-player">
+          <button
+            id="hero-play-btn"
+            class="hero-play-btn"
+            type="button"
+            aria-label="Play video"
+          >
+            Start
+            <i class="fa-solid fa-play"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-scroll" id="hero-scroll">
+        <span class="scroll-hint">اسحب لتحت</span>
+        <i class="fa-solid fa-chevron-down"></i>
+        <i class="fa-solid fa-chevron-down arrow-2"></i>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  WELCOME MESSAGE
+════════════════════════════════════ -->
+    <section id="welcome">
+      <span class="gold-ornament reveal">✦ ✦ ✦</span>
+
+      <h2 class="welcome-title reveal">يا أهلاً وسهلاً بيك في فرحنا! 🤍</h2>
+
+      <div class="welcome-card reveal">
+        <p class="welcome-body">
+          بفرحة كبيرة وقلوب ممتنة،<br />
+          <strong>نور وكريم</strong> وعيلتيهما بيدعوك تكون معانا في أجمل ليلة في
+          حياتهم.<br /><br />
+          حضورك هيكمل اللحظة، ويخلّي الذكرى أدفأ وأجمل.
+        </p>
+
+        <div class="gold-divider reveal">
+          <hr />
+          <span class="gold-divider-icon">◆</span>
+          <hr />
+        </div>
+
+        <p class="welcome-sub reveal">نستناك معانا</p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  COUPLE PHOTOS
+════════════════════════════════════ -->
+    <section id="couple">
+      <p class="section-label reveal">العروسين</p>
+      <h2 class="section-title reveal">نور &amp; كريم</h2>
+
+      <div class="photos-row">
+        <div class="photo-card reveal reveal-delay-1">
+          <img
+            src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80"
+            alt="صورة العروسين"
+            loading="lazy"
+          />
+          <div class="photo-card-overlay"></div>
+        </div>
+        <div class="photo-card reveal reveal-delay-2">
+          <img
+            src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80"
+            alt="صورة العروسين"
+            loading="lazy"
+          />
+          <div class="photo-card-overlay"></div>
+        </div>
+        <div class="photo-card reveal reveal-delay-3">
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80"
+            alt="صورة العروسين"
+            loading="lazy"
+          />
+          <div class="photo-card-overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  DATE & DETAILS
+════════════════════════════════════ -->
+    <section id="details">
+      <p
+        class="section-label"
+        style="color: var(--gold); margin-bottom: 14px"
+        class="reveal"
+      >
+        تفاصيل الفرح
+      </p>
+      <h2 class="section-title reveal" style="color: #fff; margin-bottom: 48px">
+        احفظ التاريخ
+      </h2>
+
+      <div class="details-grid reveal">
+        <div class="detail-block">
+          <span class="detail-icon"
+            ><i class="fa-solid fa-calendar-days"></i
+          ></span>
+          <div class="detail-label">التاريخ</div>
+          <div class="detail-value">الجمعة<br />١٥ أغسطس ٢٠٢٦</div>
+        </div>
+        <div class="details-divider"></div>
+        <div class="detail-block">
+          <span class="detail-icon"><i class="fa-solid fa-clock"></i></span>
+          <div class="detail-label">الموعد</div>
+          <div class="detail-value">٧ مساءً</div>
+          <div class="detail-sub">الباب يفتح ٦:٣٠</div>
+        </div>
+        <div class="details-divider"></div>
+        <div class="detail-block">
+          <span class="detail-icon"
+            ><i class="fa-solid fa-location-dot"></i
+          ></span>
+          <div class="detail-label">المكان</div>
+          <div class="detail-value">قاعة روز الدولية</div>
+          <div class="detail-sub">القاهرة الجديدة</div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top: 8px">
+        <a href="https://maps.google.com" target="_blank" class="maps-btn">
+          افتح في الخريطة ↗
+        </a>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  OUR STORY TIMELINE
+════════════════════════════════════ -->
+    <section id="story">
+      <p class="section-label reveal">قصتنا</p>
+      <h2 class="section-title reveal">من أول نظرة للكلمة الأخيرة 💛</h2>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="tl-text">
+            <div class="tl-year">٢٠٢٠</div>
+            <div class="tl-event">أول لقاء</div>
+            <div class="tl-desc">
+              في حفلة عيد ميلاد مشتركة، كان كريم بيحاول يكون cool… ونور مش
+              قاوياه 😂
+            </div>
+          </div>
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-img">
+            <img
+              src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400&q=75"
+              alt="أول لقاء"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="tl-img">
+            <img
+              src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=400&q=75"
+              alt="السفر"
+              loading="lazy"
+            />
+          </div>
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-text">
+            <div class="tl-year">٢٠٢٢</div>
+            <div class="tl-event">أول رحلة مع بعض</div>
+            <div class="tl-desc">
+              رحلة مش هننساها — اتضح إن كريم بيتوه في كل حتة، ونور عندها حاسة
+              اتجاه خارقة 🗺️
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="tl-text">
+            <div class="tl-year">٢٠٢٤</div>
+            <div class="tl-event">اللحظة اللي كلنا استنّاها</div>
+            <div class="tl-desc">
+              خطبة على ضهر البحر، دموع، ضحك، و"أيوه" — كل ده في نفس الوقت 💍
+            </div>
+          </div>
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <div class="tl-img">
+            <img
+              src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75"
+              alt="الخطوبة"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  GALLERY
+════════════════════════════════════ -->
+    <section id="gallery">
+      <p class="section-label reveal">من لحظاتنا</p>
+      <h2 class="section-title reveal">صور مع بعض 📷</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item tall reveal reveal-delay-1">
+          <img
+            src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <img
+            src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <img
+            src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-item wide reveal">
+          <img
+            src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?w=600&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-item reveal reveal-delay-1">
+          <img
+            src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <img
+            src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=400&q=75"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  PROGRAM
+════════════════════════════════════ -->
+    <section id="program">
+      <p class="section-label reveal">برنامج الفرح</p>
+      <h2 class="section-title reveal">الليلة هتبقى إيه 🌙</h2>
+
+      <div class="program-items">
+        <div class="prog-item reveal">
+          <div class="prog-time">٦:٣٠م</div>
+          <div>
+            <div class="prog-name">الاستقبال والترحيب</div>
+            <div class="prog-desc">
+              تعالى بدري، اتعرف على الناس، وخد كوباية عصير فريش 🍹
+            </div>
+          </div>
+        </div>
+        <div class="prog-item reveal">
+          <div class="prog-time">٧:٠٠م</div>
+          <div>
+            <div class="prog-name">دخلة العروسين</div>
+            <div class="prog-desc">
+              اللحظة اللي بنستناها كلنا — نور وكريم بيدخلوا على نور وزغاريد 🎊
+            </div>
+          </div>
+        </div>
+        <div class="prog-item reveal">
+          <div class="prog-time">٧:٣٠م</div>
+          <div>
+            <div class="prog-name">العشا والسهرة</div>
+            <div class="prog-desc">
+              أكل تقيل، موسيقى حلوة، وذكريات مش هتتنسى 🍽️
+            </div>
+          </div>
+        </div>
+        <div class="prog-item reveal">
+          <div class="prog-time">٩:٠٠م</div>
+          <div>
+            <div class="prog-name">وقفة التوثيق</div>
+            <div class="prog-desc">
+              صور مع العروسين — مش هيفوتك الفرصة دي 📸
+            </div>
+          </div>
+        </div>
+        <div class="prog-item reveal">
+          <div class="prog-time">١٠:٠٠م</div>
+          <div>
+            <div class="prog-name">الرقص والمرح</div>
+            <div class="prog-desc">الدي جي هيلعب وأنت مش هتقدر تقعد! 🎶</div>
+          </div>
+        </div>
+        <div class="prog-item reveal">
+          <div class="prog-time">١٢:٠٠ص</div>
+          <div>
+            <div class="prog-name">كيكة العروسين</div>
+            <div class="prog-desc">اللحظة الحلوة — حرفياً 🎂</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+  RSVP
+════════════════════════════════════ -->
+    <section id="rsvp">
+      <h2 class="rsvp-heading reveal">تأكيد الحضور</h2>
+      <p class="rsvp-sub reveal">
+        فرحنا مش كامل من غيرك 🤍<br />
+
+        بارك للعروسين
+      </p>
+
+      <div class="rsvp-form reveal">
+        <textarea
+          id="rsvp-message"
+          class="rsvp-textarea"
+          placeholder="اكتب مباركتك هنا..."
+          aria-label="رسالة المباركة"
+        ></textarea>
+
+        <div class="rsvp-actions">
+          <button
+            id="rsvp-send-btn"
+            class="rsvp-btn rsvp-send-btn"
+            type="button"
+          >
+            إرسال على واتساب
+          </button>
+          <button
+            id="rsvp-clear-btn"
+            class="rsvp-btn rsvp-clear-btn"
+            type="button"
+          >
+            مسح الرسالة
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-names">نور &amp; كريم</div>
+      <div class="footer-date">١٥ . ٠٨ . ٢٠٢٦ &nbsp;·&nbsp; القاهرة</div>
+    </footer>
+
+    <button
+      id="scroll-to-top-btn"
+      class="scroll-to-top"
+      type="button"
+      aria-label="Scroll to top"
+    >
+      <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <script>
+      // Scroll reveal
+      const revealEls = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              revealObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      revealEls.forEach((el) => revealObserver.observe(el));
+
+      // Section labels that were in a reveal class but missed the attribute
+      document.querySelectorAll(".section-label").forEach((el) => {
+        if (!el.classList.contains("reveal")) {
+          el.classList.add("reveal");
+          revealObserver.observe(el);
+        }
+      });
+
+      const heroSection = document.getElementById("hero");
+      const heroVideo = document.getElementById("hero-video");
+      const heroPlayBtn = document.getElementById("hero-play-btn");
+      const heroScroll = document.getElementById("hero-scroll");
+      const scrollToTopBtn = document.getElementById("scroll-to-top-btn");
+      const rsvpMessage = document.getElementById("rsvp-message");
+      const rsvpSendBtn = document.getElementById("rsvp-send-btn");
+      const rsvpClearBtn = document.getElementById("rsvp-clear-btn");
+      const heroAudio = new Audio("totatota.mp3");
+      heroAudio.preload = "auto";
+
+      let heroStarted = false;
+      let heroNameTimer = null;
+
+      async function playHeroSequence() {
+        if (heroStarted) return;
+        heroStarted = true;
+        heroPlayBtn.disabled = true;
+
+        heroVideo.currentTime = 0;
+        heroVideo.loop = false;
+        heroVideo.muted = false;
+
+        heroAudio.currentTime = 0;
+
+        try {
+          await Promise.all([heroVideo.play(), heroAudio.play()]);
+          heroNameTimer = window.setTimeout(() => {
+            heroSection.classList.add("names-visible");
+            heroScroll.classList.add("visible");
+          }, 2000);
+          window.setTimeout(() => {
+            heroPlayBtn.classList.add("is-hidden");
+          }, 250);
+        } catch (error) {
+          heroStarted = false;
+          heroPlayBtn.disabled = false;
+          console.error("Unable to start hero media:", error);
+        }
+      }
+
+      heroPlayBtn.addEventListener("click", playHeroSequence);
+
+      heroVideo.addEventListener("ended", () => {
+        heroStarted = false;
+      });
+
+      scrollToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      rsvpSendBtn.addEventListener("click", () => {
+        const typedMessage = rsvpMessage.value.trim();
+        const message = typedMessage || "ربنا يسعدكم ي حبايبي ويتمملكو بخير🤍";
+        const waUrl = `https://wa.me/201208381108?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, "_blank", "noopener,noreferrer");
+      });
+
+      rsvpClearBtn.addEventListener("click", () => {
+        rsvpMessage.value = "";
+        rsvpMessage.focus();
+      });
+    </script>
+  </body>
+</html>
